@@ -10,13 +10,38 @@ project 1 - A Random Quote Generator
 /*** 
  * `quotes` array 
 ***/
-
+let quotes = [
+  {quoteText: 'When someone shows you who they are, believe them the first time.',
+   author: 'Maya Angelou',
+     },
+  {quoteText: 'Seeing is not always believing.',
+   author: 'Martin Luther King, Jr.',
+    },
+  {quoteText: 'No person is your friend who demands your silence, or denies your right to grow.',
+   author: 'Alice Walker',
+     },
+  {quoteText: 'Your silence will not proctect you.',
+   author: 'Audre Lorde',
+     },
+  {quoteText: 'Grab the broom of anger and drive off the beast of fear.',
+   author: 'Zora Neale Hurston',
+  }
+];
 
 
 /***
  * `getRandomQuote` function
 ***/
+const upper = quotes.length;
 
+function getRandomNumber (upper) { 
+  return Math.floor(Math.random() * upper) + 1;
+}
+function getRandomQuote () {
+    return console.log(quotes[getRandomNumber(upper)]);
+}
+
+getRandomQuote();
 
 
 /***
@@ -30,4 +55,4 @@ project 1 - A Random Quote Generator
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
-document.getElementById('load-quote').addEventListener("click", printQuote, false);
+//document.getElementById('load-quote').addEventListener("click", printQuote, false);
