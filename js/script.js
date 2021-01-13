@@ -33,15 +33,20 @@ let quotes = [
  * `getRandomQuote` function
 ***/
 const upper = quotes.length;
+let chosenQuote = '';
 
-function getRandomNumber (upper) { 
-  return Math.floor(Math.random() * upper) + 1;
-}
+
+
 function getRandomQuote () {
-    return console.log(quotes[getRandomNumber(upper)]);
-}
+  function getRandomNumber (upper) { 
+    return Math.floor(Math.random() * upper);
+  }
+   chosenQuote = quotes[getRandomNumber(upper)];
+   return `${chosenQuote['quoteText']} ${chosenQuote['author']}`
+  }
+  
 
-getRandomQuote();
+console.log(getRandomQuote());
 
 
 /***
