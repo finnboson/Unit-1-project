@@ -13,28 +13,24 @@ project 1 - A Random Quote Generator
 let quotes = [
   {quoteText: 'When someone shows you who they are, believe them the first time.',
    source: 'Maya Angelou',
-   citation: '',
-   year: ''
-     },
+  },
   {quoteText: 'Seeing is not always believing.',
    source: 'Martin Luther King, Jr.',
-   citation: '',
-   year: ''
-    },
+   url: 'https://quotes.yourdictionary.com/author/martin-luther-king-jr/618811'
+   },
   {quoteText: 'No person is your friend who demands your silence, or denies your right to grow.',
    source: 'Alice Walker',
-   citation: '',
-   year: ''
-     },
+  },
   {quoteText: 'Your silence will not proctect you.',
    source: 'Audre Lorde',
-   citation: '',
-   year: ''
-     },
+   },
   {quoteText: 'Grab the broom of anger and drive off the beast of fear.',
    source: 'Zora Neale Hurston',
-   citation: '',
-   year: ''
+   },
+  {quoteText: `The animals of the world exist for their own reasons. They were not made for humans 
+              any more than black people were made for white, or women created for men.`,
+    source: 'Alice Walker',
+    url: 'https://www.goodreads.com/quotes/20942-the-animals-of-the-world-exist-for-their-own-reasons' 
   },
   {quoteText: `I feel that if we don't take seriously the ways in which racism is embedded in structures 
                of institutions, if we assume that there must be an identifiable racist who is the perpetrator, 
@@ -63,8 +59,8 @@ function getRandomQuote () {
     return Math.floor(Math.random() * upper);
   }
    chosenQuote = quotes[getRandomNumber(upper)];
-   return `${chosenQuote['quoteText']} ${chosenQuote['source']} ${chosenQuote['citation']} ${chosenQuote['year']}`
-  }
+   return chosenQuote
+}
   
 
 console.log(getRandomQuote());
@@ -74,34 +70,26 @@ console.log(getRandomQuote());
  * `printQuote` function
 ***/
 function printQuote () {
-  getRandomQuote();
-  let html = '';
-  if (chosenQuote['citation'] == '') {
-    html = `<p class="quote">${chosenQuote['quoteText']}</p>
-    <p class="source">${chosenQuote['source']}</p><span class="year">${chosenQuote['year']}</span></p>`
+  randomQuote = getRandomQuote();
+  let html = `<p class="quote">${randomQuote.quoteText}</p>
+              <p class="source">${randomQuote.source}`;
+  
+    if (randomQuote.citation) {
+    html += `<span class="citation">${randomQuote.citation}</span>`;
   }
-  else { html = `<p class="quote">${chosenQuote['quoteText']}</p>
-  <p class="source">${chosenQuote['source']}<span class="citation">${chosenQuote['citation']}</span><span class="year">${chosenQuote['year']}</span></p>`;            
+    if (randomQuote.year) {
+    html += `<span class="year">${randomQuote.year}</span></p>`;
   }
-
-  if (chosenQuote['year'] == '') {
-    html = `<p class="quote">${chosenQuote['quoteText']}</p>
-    <p class="source">${chosenQuote['source']}<span class="citation">${chosenQuote['citation']}</span></p>`
+    if (randomQuote.url) {
+      html += `<p class="url"> 
+      <a href="${randomQuote.url}">Click here to learn more</a>
+    </p>`;
     }
-
-  else { html = `<p class="quote">${chosenQuote['quoteText']}</p>
-        <p class="source">${chosenQuote['source']}<span class="citation">${chosenQuote['citation']}</span><span class="year">${chosenQuote['year']}</span></p>`;            
+  return document.getElementById('quote-box').innerHTML = html;
   }
-  if (chosenQuote['citation'] == '' && chosenQuote['year'] == '')
-    html = `<p class="quote">${chosenQuote['quoteText']}</p>
-    <p class="source">${chosenQuote['source']}</p>`
-    else { html = `<p class="quote">${chosenQuote['quoteText']}</p>
-        <p class="source">${chosenQuote['source']}<span class="citation">${chosenQuote['citation']}</span><span class="year">${chosenQuote['year']}</span></p>`;  
-  }
-  return document.querySelector('div').innerHTML = html;
-}
 
-printQuote();
+  
+
 
 /***
  * click event listener for the print quote button
