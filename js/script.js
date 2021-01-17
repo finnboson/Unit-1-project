@@ -16,7 +16,7 @@ let quotes = [
   },
   {quoteText: 'Seeing is not always believing.',
    source: 'Martin Luther King, Jr.',
-   url: 'https://quotes.yourdictionary.com/author/martin-luther-king-jr/618811'
+   url: 'https://www.cnn.com/2021/01/16/opinions/martin-luther-king-legacy-with-capitol-violence-trump-impeachment-joseph/index.html'
    },
   {quoteText: 'No person is your friend who demands your silence, or denies your right to grow.',
    source: 'Alice Walker',
@@ -30,14 +30,15 @@ let quotes = [
   {quoteText: `The animals of the world exist for their own reasons. They were not made for humans 
               any more than black people were made for white, or women created for men.`,
     source: 'Alice Walker',
-    url: 'https://www.goodreads.com/quotes/20942-the-animals-of-the-world-exist-for-their-own-reasons' 
+    url: 'https://www.gale.com/open-access/alice-walker' 
   },
   {quoteText: `I feel that if we don't take seriously the ways in which racism is embedded in structures 
                of institutions, if we assume that there must be an identifiable racist who is the perpetrator, 
                then we won't ever succeed in eradicating racism.`,
     source: 'Angela Y. Davis',
     citation: 'Freedom is a Constant Struggle',
-    year: '2016'
+    year: '2016',
+    url: 'https://www.glbthistory.org/angela-davis'
   },
   {quoteText: `Nobody in the world, nobody in history, has ever gotten their freedom by 
               appealing to the moral sense of the people who were oppressing them.`,
@@ -61,17 +62,26 @@ function getRandomQuote () {
    chosenQuote = quotes[getRandomNumber(upper)];
    return chosenQuote
 }
+ 
+//Change background color function
+const randomValue= () => Math.floor(Math.random() * 256);
+
+function randomBackground(value) {
+    color =`rgb${value()}, rgb${value()}, rgb${value()}`;
+    return color
+       }
+   
+//document.getElementById("load-quote").style.backgroundColor = `${randomBackground(randomValue)}`;
+
+
   
-
-console.log(getRandomQuote());
-
 
 /***
  * `printQuote` function
 ***/
 function printQuote () {
   randomQuote = getRandomQuote();
-  let html = `<p class="quote">${randomQuote.quoteText}</p>
+  let html =  `<p class="quote">${randomQuote.quoteText}</p>
               <p class="source">${randomQuote.source}`;
   
     if (randomQuote.citation) {
@@ -82,10 +92,10 @@ function printQuote () {
   }
     if (randomQuote.url) {
       html += `<p class="url"> 
-      <a href="${randomQuote.url}">Click here to learn more</a>
+      <a href="${randomQuote.url}">Click here to learn more.</a>
     </p>`;
     }
-  return document.getElementById('quote-box').innerHTML = html;
+      return document.getElementById('quote-box').innerHTML = html;
   }
 
   
@@ -97,3 +107,4 @@ function printQuote () {
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+style.backgroundColor = `${randomBackground(randomValue)}`;

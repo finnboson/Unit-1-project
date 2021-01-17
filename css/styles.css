@@ -26,6 +26,7 @@ h1 {
   text-shadow: 1px 1px 1px rgba(50, 50, 50, 0.3);
 }
 
+
 .load-quote {
   color: #fff;
   text-shadow: 1px 1px 1px rgba(50, 50, 50, 0.3);
@@ -120,8 +121,27 @@ h1 {
   letter-spacing: 0.05em;
   line-height: 1.1;
   text-align: right;
-  margin-right: 4em;
+  margin-right: 5em;
+   }
+  
+  a {
+    outline: none;
+    text-decoration: none;
+  }
+
+  a:link {
+    color:white;
+ }
+   a:hover {
+  border-bottom: 2px solid;
 }
+ a:visited {
+    color:black;
+}
+ a:active {
+  color:red;
+
+ }
 
 @media (min-width: 768px) {
   body {
