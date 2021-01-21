@@ -6,33 +6,33 @@ project 1 - A Random Quote Generator
 
 /*** 
  * Below is my "quotes" array where I've stored all of the possible quotes that can display. Each quote is 
- * an object with at minimum the properties "quoteText" and "source". Some objects also include the properties
+ * an object with at minimum the properties "quote" and "source". Some objects also include the properties
  * "citation", "year" and "url". * 
 ***/
 
 let quotes = [
-  {quoteText: 'When someone shows you who they are, believe them the first time.',
+  {quote: 'When someone shows you who they are, believe them the first time.',
    source: 'Maya Angelou',
   },
-  {quoteText: 'Seeing is not always believing.',
+  {quote: 'Seeing is not always believing.',
    source: 'Martin Luther King, Jr.',
    url: 'https://www.cnn.com/2021/01/16/opinions/martin-luther-king-legacy-with-capitol-violence-trump-impeachment-joseph/index.html'
    },
-  {quoteText: 'No person is your friend who demands your silence, or denies your right to grow.',
+  {quote: 'No person is your friend who demands your silence, or denies your right to grow.',
    source: 'Alice Walker',
   },
-  {quoteText: 'Your silence will not proctect you.',
+  {quote: 'Your silence will not proctect you.',
    source: 'Audre Lorde',
    },
-  {quoteText: 'Grab the broom of anger and drive off the beast of fear.',
+  {quote: 'Grab the broom of anger and drive off the beast of fear.',
    source: 'Zora Neale Hurston',
    },
-  {quoteText: `The animals of the world exist for their own reasons. They were not made for humans 
+  {quote: `The animals of the world exist for their own reasons. They were not made for humans 
               any more than black people were made for white, or women created for men.`,
     source: 'Alice Walker',
     url: 'https://www.gale.com/open-access/alice-walker' 
   },
-  {quoteText: `I feel that if we don't take seriously the ways in which racism is embedded in structures 
+  {quote: `I feel that if we don't take seriously the ways in which racism is embedded in structures 
                of institutions, if we assume that there must be an identifiable racist who is the perpetrator, 
                then we won't ever succeed in eradicating racism.`,
     source: 'Angela Y. Davis',
@@ -40,7 +40,7 @@ let quotes = [
     year: '2016',
     url: 'https://www.glbthistory.org/angela-davis'
   },
-  {quoteText: `Nobody in the world, nobody in history, has ever gotten their freedom by 
+  {quote: `Nobody in the world, nobody in history, has ever gotten their freedom by 
               appealing to the moral sense of the people who were oppressing them.`,
     source: 'Assata Shakur',
     citation: 'Assata: An Autobiography',
@@ -94,8 +94,8 @@ function randomBackground(value) {
   
 
 /***
- * Below is the printQuote function, which displays a random quote, changes the background color 
- * everytime a new quote is generated, and automatically generates a new quote every 9 seconds.
+ * Below is the printQuote function, which displays a random quote and changes the background color 
+ * everytime a new quote is generated.
  *   
 ***/
 
@@ -112,12 +112,12 @@ I created above to return one of the quote objects from the quotes array.*/
   randomQuote = getRandomQuote();
 
 /*Then I declare a variable and assign it a string value. Inside the string is the text that will 
-display on the screen. Within the html file the quoteText is inside <p> tags 
+display on the screen. Within the html file the quote is inside <p> tags 
 and assigned to the class "quote". Therefore, I put the randomQuote inside <p> tags with the class "quote"
-and used dot notation to retrieve the "quoteText" property of the randomQuote object. I followed the 
+and used dot notation to retrieve the "quote" property of the randomQuote object. I followed the 
 same steps to insert the "source" property into the html string. Every quote inside my array has at
 minimum these two properties, so this is my baseline string. */
-  let html = `<p class="quote">${randomQuote.quoteText}</p>
+  let html = `<p class="quote">${randomQuote.quote}</p>
               <p class="source">${randomQuote.source}`;
 
 /* Next are three conditional statements. Each one checks to see if the randomQuote chosen by the 
@@ -137,17 +137,16 @@ after visited. */
       html += `<p class="url"> 
       <a href="${randomQuote.url}">Click here to learn more.</a>
     </p>`;
-    }
-/*This function automatically calls the printQuote function every 9000 milliseconds, or 9 seconds.
-*/
-    setTimeout(printQuote, 9000);
-
+    }   
 /*Finally, the printQuote function returns the appropriate html string inside the 'quote-box' class using the 
 document.getElementById function. */
       return document.getElementById('quote-box').innerHTML = html;
   }
 
-  
+  /*This function automatically calls the printQuote function every 9000 milliseconds, or 9 seconds.
+  */
+  setInterval(printQuote, 9000);
+
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
@@ -155,5 +154,6 @@ document.getElementById function. */
 This line of code initiates the printQuote function when the "Show another quote" button is clicked.
 */
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+
 
 
